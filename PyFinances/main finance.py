@@ -1,13 +1,13 @@
-#import modules
+# import modules that we will need 
 import os
 import csv
 
-#opening the csv file 
-with open('budget_data.csv') as csv_file:
+# opening and read the csv file 
+with open('PyFinances_budget_data.csv') as csv_file:
     csv_reader = csv.reader(csv_file)
     #excluding headers of the csv file
     csv_header = next(csv_file)
-#creating counters
+# counters
     total_months = 0
     pnl_total = 0
     past_pnl = 0
@@ -16,11 +16,10 @@ with open('budget_data.csv') as csv_file:
     profit_change = []
     count = 0
 
-  #creating the loop     
+  # making  the loop for the reader
     for row in csv_reader:
-        #count total months in data set
+        
         total_months = total_months + 1
-        #calculate total p&l of the data set
         pnl = int(row[0])
         pnl_total += pnl
         #set a variable to count var in p&l
@@ -50,14 +49,14 @@ with open('budget_data.csv') as csv_file:
     #using pop function to extract the first value of the p&l column
     popped_value = profit_change.pop(0)
     print(f"popped_value: {popped_value}")
-    #average calculation outside the loop
+    # average calculation outside the loop
     var_profit_change = round(sum(profit_change)/(count-1))
-    #testing the different calculation withing the variation of profit to make sure the data was right
+    # testing the different calculation withing the variation of profit to make sure the data was right
     print(f"Count-1: {count-1}")
     print(f"sum(profit_change): {sum(profit_change)}")
     print(f"len(profit_change): {len(profit_change)}")
     print(f"profit_change = {profit_change}")
-#Place results in a variable as f string for formatting
+# Place results in a variable as f string for formatting
 Results = (
 f" Financial Analysis \n"
 f"-------------------------\n"
@@ -88,8 +87,10 @@ f"Greates Decrease in Profit: {lowest_decrease_month} ${l_decrease} \n"
 )
 #Test Results out of the format     
 print(Results)
-#create path to publish results
-publish_data = os.path.join('Py_Finance_Analisis/finances_analysis.txt')
-#creating the code to write the output file with analysis
-with open (publish_data, 'w') as txtfile:
-    txtwriter = txtfile.write(Results)
+# path to publish results
+publish_data = os.path.join('PyFinances_budget_data/py_results/txt')
+# output file 
+
+f = open("py_finance_results.txt", "r")
+print(f.read())
+f.close()
